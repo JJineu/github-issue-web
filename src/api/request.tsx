@@ -1,10 +1,10 @@
-import { OWNER, REPO } from '../constants';
+import { CONDITION, OWNER, REPO } from '../constants';
 import { IIssue, IIssueDetail } from '../types/issue';
 import { instance } from './axiosinstance';
 
 export const getIssues = async () => {
   try {
-    const response = await instance.get(`/repos/${OWNER}/${REPO}/issues`);
+    const response = await instance.get(`/repos/${OWNER}/${REPO}/issues${CONDITION}`);
     const processedIssues: IIssue[] = response.data.map(
       (issue: {
         number: number;
