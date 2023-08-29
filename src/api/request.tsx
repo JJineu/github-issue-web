@@ -46,7 +46,11 @@ export const getIssueDetail = async (id: number) => {
   }
 };
 
-export const fakeGetIssue = async () => {
+// export const fakeGetIssue = async (params: { params: { page: number } }) => {
+//   try {
+//     const response = await instance.get(`/issues.json`, params);
+
+export const fakeGetIssue = async (): Promise<IIssue[]> => {
   try {
     const response = await instance.get(`/issues.json`);
     const processedIssues: IIssue[] = response.data.map(
@@ -69,6 +73,7 @@ export const fakeGetIssue = async () => {
     return processedIssues;
   } catch (error) {
     console.log(error);
+    return [];
   }
 };
 
