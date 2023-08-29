@@ -2,7 +2,7 @@ export interface IIssue {
   issueId: number; // number
   title: string;
   author: string;
-  createAt: string;
+  createdAt: string;
   commentsLength: number; // 2
   state: string; // state - closed, 1 open
 }
