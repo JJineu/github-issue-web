@@ -13,13 +13,6 @@
     "eqeqeq": "warn" // ==, != 대신에 ===, !== 사용
   },
   "parser": "@typescript-eslint/parser",
-
-  // node 추가 (tailwind)
-  "env": {
-    "browser": true,
-    // "node": true
-  },
-
   // 파서 옵션 설정
   "parserOptions": {
     "ecmaFeatures": {
