@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { OWNER, REPO } from '../constants';
+import { API } from '../constants';
 import styled from 'styled-components';
 import { capitalizeFirstLetter } from '../utils/format';
 
@@ -9,7 +9,7 @@ export default function Layout() {
     <Container>
       <Header>
         <StyledLink to='/'>
-          {capitalizeFirstLetter(OWNER)} / {capitalizeFirstLetter(REPO)}
+          {capitalizeFirstLetter(API.OWNER)} / {capitalizeFirstLetter(API.REPO)}
         </StyledLink>
       </Header>
       <Outlet />

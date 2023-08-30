@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { AD } from '../../constants';
 
 export default function AdCard() {
   return (
-    <LinkContainer to={`url`}>
+    <LinkContainer to={AD.URL}>
       <p>[AD]</p>
-      <img src='/adImage.jpg' alt='Ad Image' />
+      <img src={AD.IMG} alt={AD.ALT} />
     </LinkContainer>
   );
 }
