@@ -2,14 +2,16 @@ import React, { createContext, useContext, useState } from 'react';
 import { IIssue } from '../types/issue';
 import useFetch from '../hooks/useFetch';
 import { getIssues } from '../api/request';
+import useIntersect from '../hooks/useIntersect';
 
 interface IssuesContextType {
   issues: IIssue[];
-  addIssues: (newIssues: IIssue[]) => void;
   loading: boolean;
   error: Error | null | undefined;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  targetRef: React.RefObject<HTMLDivElement>;
+  // addIssues: (newIssues: IIssue[]) => void;
+  // page: number;
+  // setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const IssuesContext = createContext<IssuesContextType | undefined>(undefined);
@@ -23,8 +25,26 @@ export const IssuesProvider = ({ children }: { children: React.ReactNode }) => {
     setIssues((prevIssues) => [...prevIssues, ...newIssues]);
   };
 
+  // TODO: Throttling 적용(해야되나?)
+  const targetRef = useIntersect(
+    async (entry, observer) => {
+      try {
+        if (!loading && !error) {
+          setPage((prevPage) => prevPage + 1);
+          console.log('PAGE ! PAGE ! ', page);
+          const newData = await getIssues({ params: { page } });
+          addIssues(newData as IIssue[]);
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    },
+    // { rootMargin: '100px' },
+    { threshold: 0.5 },
+  );
+
   return (
-    <IssuesContext.Provider value={{ issues, addIssues, loading, error, page, setPage }}>
+    <IssuesContext.Provider value={{ issues, loading, error, targetRef }}>
       {children}
     </IssuesContext.Provider>
   );
