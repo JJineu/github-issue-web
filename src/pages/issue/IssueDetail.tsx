@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { fakeGetIssueDetail } from '../../api/request';
+import { getIssueDetail } from '../../api/request';
 import { IIssue, IIssueDetail } from '../../types/issue';
 import MarkdownRenderer from '../../components/issue/MarkdownRenderer';
 import styled from 'styled-components';
@@ -15,7 +15,7 @@ export default function IssueDetail() {
     data: issue,
     loading,
     error,
-  } = useFetch<IIssueDetail, Error>(() => fakeGetIssueDetail(Number(id)));
+  } = useFetch<IIssueDetail, Error>(() => getIssueDetail(Number(id)));
   const { issueId, title, author, createdAt, commentsLength, profileImage, body } = issue || {};
 
   return (
