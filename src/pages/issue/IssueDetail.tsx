@@ -24,7 +24,7 @@ export default function IssueDetail() {
       {error && <Error />}
       <Container>
         <HeaderContainer>
-          <img src={profileImage} alt='user profile image' width={50} />
+          <ProfileImage src={profileImage} alt='user profile image' />
           <IssueCard issue={{ issueId, title, author, createdAt, commentsLength } as IIssue} />
         </HeaderContainer>
         <BodyContainer>
@@ -46,3 +46,9 @@ const HeaderContainer = styled.div`
 `;
 
 const BodyContainer = styled.div``;
+
+const ProfileImage = styled.img`
+  height: 100px;
+  object-fit: cover;
+  padding: 15px 0;
+`;

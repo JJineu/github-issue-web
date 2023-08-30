@@ -13,14 +13,19 @@ export default function IssueCard({ issue }: { issue: IIssue }) {
 
   return (
     <Container onClick={moveIssueDetail}>
-      <p>#{issueId}</p>
-      <div>
-        <title>{title}</title>
+      <TitleContainer>
+        <Title>
+          <p>
+            #{issueId} {title}
+          </p>
+        </Title>
         <p>
           작성자: {author}, 작성일: {createdAt}
         </p>
-      </div>
-      <p>{commentsLength}</p>
+      </TitleContainer>
+      <CommentsContainer>
+        <p>코멘트: {commentsLength}</p>
+      </CommentsContainer>
     </Container>
   );
 }
@@ -28,7 +33,21 @@ export default function IssueCard({ issue }: { issue: IIssue }) {
 const Container = styled.section`
   display: flex;
   width: 100%;
-  gap: 10px;
+  gap: 5px;
+  padding: 15px 0;
   align-items: center;
   border-bottom: 1px solid #ccc;
+`;
+
+const TitleContainer = styled.div`
+  display: flex-col;
+  width: 100%;
+`;
+
+const Title = styled.h3`
+  padding: 0 0 10px 0;
+`;
+
+const CommentsContainer = styled.div`
+  width: 90px;
 `;
