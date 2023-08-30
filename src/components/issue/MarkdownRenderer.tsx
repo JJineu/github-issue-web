@@ -19,8 +19,8 @@ export default function MarkdownRenderer({ markdown }: IMarkdownProps) {
             // 강조 (``)
             <code
               style={{
-                background:
-                  'linear-gradient( to right, var(--sub-highlight-color) 15%, var(--highlight-color) 85%, var(--sub-highlight-color) )',
+                background: 'linear-gradient( to right,#fcffdf 15%, #faffb8 85%, #fcffdf)',
+                fontWeight: 'bold',
                 padding: '2px',
                 borderRadius: '3px',
               }}
@@ -56,9 +56,9 @@ export default function MarkdownRenderer({ markdown }: IMarkdownProps) {
             </div>
           );
         },
-        img() {
-          return <img style={{ maxWidth: '60vw' }} alt='MarkdownRenderer__Image' />;
-        },
+        img: ({ ...props }) => (
+          <img style={{ maxWidth: '100%' }} alt='MarkdownRenderer__Image' {...props} />
+        ),
         em({ children, ...props }) {
           return (
             <span style={{ fontStyle: 'italic' }} {...props}>

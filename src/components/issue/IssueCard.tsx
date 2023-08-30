@@ -38,12 +38,12 @@ const LinkContainer = styled(Link)`
 `;
 
 const TitleContainer = styled.div`
-  display: flex-col;
   width: 100%;
 `;
 
 const Title = styled.div`
   font-size: 20px;
+  font-weight: 500;
 `;
 
 const CommentsContainer = styled.div`

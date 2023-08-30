@@ -11,9 +11,12 @@ export default function Loading() {
 
 const Container = styled.div`
   display: flex;
+  position: relative;
   justify-content: center;
+  text-align: center;
 `;
 const Image = styled.img`
-  display: flex;
-  width: 100px;
+  position: absolute;
+  height: 100px;
+  z-index: 20;
 `;

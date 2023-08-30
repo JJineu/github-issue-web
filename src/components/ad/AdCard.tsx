@@ -12,20 +12,24 @@ export default function AdCard() {
 }
 
 const LinkContainer = styled(Link)`
-  display: block;
+  display: flex;
   position: relative;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 100px;
-  > img {
-    height: 100%;
-  }
-  padding: 3px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
   text-decoration: none;
   color: black;
   background-color: #f0f6fa;
+  > img {
+    height: 100px;
+    object-fit: cover;
+  }
   > p {
     position: absolute;
-    top: 2px;
+    top: 4px;
     left: 4px;
     padding: 0;
     margin: 0;

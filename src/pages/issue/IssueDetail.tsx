@@ -22,33 +22,33 @@ export default function IssueDetail() {
     <>
       {loading && <Loading />}
       {error && <Error />}
-      <Container>
+      <div>
         <HeaderContainer>
           <ProfileImage src={profileImage} alt='user profile image' />
           <IssueCard issue={{ issueId, title, author, createdAt, commentsLength } as IIssue} />
         </HeaderContainer>
-        <BodyContainer>
+        <div>
           <MarkdownRenderer markdown={String(body)} />
-        </BodyContainer>
-      </Container>
+        </div>
+      </div>
     </>
   );
 }
 
-const Container = styled.section`
-  display: flex-row;
-`;
-
 const HeaderContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
   padding-bottom: 10px;
+  min-height: 120px;
 `;
 
-const BodyContainer = styled.div``;
-
 const ProfileImage = styled.img`
-  height: 100px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  padding: 15px 0;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
 `;

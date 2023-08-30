@@ -17,12 +17,11 @@ export default function Layout() {
   );
 }
 
-const Container = styled.body`
+const Container = styled.div`
   padding: 0;
-  margin: 20px;
+  margin: 30px;
   display: flex;
   flex-direction: column;
-  /* display: flex-col; */
   padding: 10px;
   min-width: 480px;
 `;
