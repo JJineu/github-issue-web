@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
+import { STATE } from '../constants';
 
 interface BaseState<D, E> {
   error?: E | null;
@@ -10,7 +11,7 @@ interface UseFetchState<D, E> extends BaseState<D, E> {
 }
 
 interface UseFetchAction<D, E> extends BaseState<D, E> {
-  type: 'LOADING' | 'ERROR' | 'SUCCESS';
+  type: typeof STATE.LOADING | typeof STATE.ERROR | typeof STATE.SUCCESS;
 }
 
 const useFetchReducer = <D, E>(
@@ -18,19 +19,19 @@ const useFetchReducer = <D, E>(
   action: UseFetchAction<D, E>,
 ): UseFetchState<D, E> => {
   switch (action.type) {
-    case 'LOADING':
+    case STATE.LOADING:
       return {
         loading: true,
         error: null,
         data: null,
       };
-    case 'ERROR':
+    case STATE.ERROR:
       return {
         loading: false,
         error: action.error,
         data: null,
       };
-    case 'SUCCESS':
+    case STATE.SUCCESS:
       return {
         loading: false,
         error: null,
@@ -50,12 +51,12 @@ const useFetch = <D, E>(fetchCallback: () => Promise<D>) => {
   const [state, dispatch] = useReducer(useFetchReducer<D, E>, initialState);
 
   const fetchData = async () => {
-    dispatch({ type: 'LOADING' });
+    dispatch({ type: STATE.LOADING });
     try {
       const data = await fetchCallback();
-      dispatch({ type: 'SUCCESS', data });
+      dispatch({ type: STATE.SUCCESS, data });
     } catch (error) {
-      dispatch({ type: 'ERROR', error: error as E });
+      dispatch({ type: STATE.ERROR, error: error as E });
     }
   };
 
