@@ -1,17 +1,12 @@
 export interface IIssue {
   issueId: number; // number
-  title: string;
-  author: string;
-  createdAt: string;
-  commentsLength: number; // 2
-  state: string; // state - closed, 1 open
-}
-export interface IIssueDetail {
-  issueId: number; // number
-  title: string;
+  title: string; // title
   author: string; // user.login
   createdAt: string; // created_at
   commentsLength: number; // comments
+  state?: string; // state - closed, open
+}
+export interface IIssueDetail extends IIssue {
   profileImage: string; // user.avatar_url
-  body: string; // markdown
+  body: string;
 }
