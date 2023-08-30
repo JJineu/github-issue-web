@@ -72,12 +72,11 @@ export const fakeGetIssue = async (): Promise<IIssue[]> => {
     );
     return processedIssues;
   } catch (error) {
-    console.log(error);
-    return [];
+    throw new Error('Failed to fetch issue detail.');
   }
 };
 
-export const fakeGetIssueDetail = async (id: number) => {
+export const fakeGetIssueDetail = async (id: number): Promise<IIssueDetail> => {
   try {
     const response = await instance.get(`/issueDetail.json`);
     const processedIssue: IIssueDetail = {
@@ -91,6 +90,6 @@ export const fakeGetIssueDetail = async (id: number) => {
     };
     return processedIssue;
   } catch (error) {
-    console.log(error);
+    throw new Error('Failed to fetch issue detail.');
   }
 };
