@@ -2,9 +2,10 @@ import { CONDITION, OWNER, REPO } from '../constants';
 import { IIssue, IIssueDetail } from '../types/issue';
 import { instance } from './axiosinstance';
 
-export const getIssues = async () => {
+export const getIssues = async (params?: { params: { page: number } }): Promise<IIssue[]> => {
   try {
-    const response = await instance.get(`/repos/${OWNER}/${REPO}/issues${CONDITION}`);
+    const page = params?.params.page || 1;
+    const response = await instance.get(`/repos/${OWNER}/${REPO}/issues${CONDITION}&page=${page}`);
     const processedIssues: IIssue[] = response.data.map(
       (issue: {
         number: number;
@@ -24,7 +25,7 @@ export const getIssues = async () => {
     );
     return processedIssues;
   } catch (error) {
-    console.log(error);
+    throw new Error('Failed to fetch issue list.');
   }
 };
 
@@ -42,17 +43,13 @@ export const getIssueDetail = async (id: number) => {
     };
     return processedIssue;
   } catch (error) {
-    console.log(error);
+    throw new Error('Failed to fetch issue detail.');
   }
 };
 
-// export const fakeGetIssue = async (params: { params: { page: number } }) => {
-//   try {
-//     const response = await instance.get(`/issues.json`, params);
-
-export const fakeGetIssue = async (): Promise<IIssue[]> => {
+export const fakeGetIssue = async (params?: { params: { page: number } }): Promise<IIssue[]> => {
   try {
-    const response = await instance.get(`/issues.json`);
+    const response = await instance.get(`/issues.json`, params);
     const processedIssues: IIssue[] = response.data.map(
       (issue: {
         number: number;
