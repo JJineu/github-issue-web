@@ -4,11 +4,11 @@ import { IIssue } from '../../types/issue';
 import AdCard from '../../components/ad/AdCard';
 import Loading from '../../components/common/Loading';
 import Error from '../../components/common/Error';
-import styled from 'styled-components';
 import { useIssuesContext } from '../../context/IssuesProvider';
+import InfinityIssues from '../../components/issue/InfinityIssues';
 
 export default function Issue() {
-  const { issues, loading, error, targetRef } = useIssuesContext();
+  const { issues, loading, error } = useIssuesContext();
 
   return (
     <>
@@ -21,12 +21,7 @@ export default function Issue() {
             {(index + 1) % 4 === 0 && <AdCard />}
           </React.Fragment>
         ))}
-      <Target ref={targetRef} />
+      <InfinityIssues />
     </>
   );
 }
-
-const Target = styled.div`
-  background: #bf4f74;
-  height: 1px;
-`;

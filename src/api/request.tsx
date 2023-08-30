@@ -2,9 +2,8 @@ import { API } from '../constants';
 import { IIssue, IIssueDetail } from '../types/issue';
 import { instance } from './axiosinstance';
 
-export const getIssues = async (params?: { params: { page: number } }): Promise<IIssue[]> => {
+export const getIssues = async (page = 1): Promise<IIssue[]> => {
   try {
-    const page = params?.params.page || 1;
     const response = await instance.get(
       `/repos/${API.OWNER}/${API.REPO}/issues${API.CONDITION}&page=${page}`,
     );
