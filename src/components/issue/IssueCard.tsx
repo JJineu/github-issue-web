@@ -1,18 +1,14 @@
 import React from 'react';
 import { IIssue } from '../../types/issue';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { formatDate } from '../../utils/format';
 
 export default function IssueCard({ issue }: { issue: IIssue }) {
   const { issueId, title, author, createdAt, commentsLength } = issue;
-  const navigate = useNavigate();
-  const location = useLocation();
-  const moveIssueDetail = () => {
-    if (location.pathname !== `/${issueId}`) navigate(`/${issueId}`);
-  };
 
   return (
-    <Container onClick={moveIssueDetail}>
+    <LinkContainer to={`/${issueId}`}>
       <TitleContainer>
         <Title>
           <p>
@@ -20,23 +16,25 @@ export default function IssueCard({ issue }: { issue: IIssue }) {
           </p>
         </Title>
         <p>
-          작성자: {author}, 작성일: {createdAt}
+          작성자: {author}, 작성일: {formatDate(createdAt)}
         </p>
       </TitleContainer>
       <CommentsContainer>
         <p>코멘트: {commentsLength}</p>
       </CommentsContainer>
-    </Container>
+    </LinkContainer>
   );
 }
 
-const Container = styled.section`
+const LinkContainer = styled(Link)`
   display: flex;
   width: 100%;
   gap: 5px;
-  padding: 15px 0;
+  padding: 10px;
   align-items: center;
   border-bottom: 1px solid #ccc;
+  text-decoration: none;
+  color: black;
 `;
 
 const TitleContainer = styled.div`
@@ -44,10 +42,10 @@ const TitleContainer = styled.div`
   width: 100%;
 `;
 
-const Title = styled.h3`
-  padding: 0 0 10px 0;
+const Title = styled.div`
+  font-size: 20px;
 `;
 
 const CommentsContainer = styled.div`
-  width: 90px;
+  width: 100px;
 `;

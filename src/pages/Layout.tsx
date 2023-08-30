@@ -1,24 +1,30 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { OWNER, REPO } from '../constants';
 import styled from 'styled-components';
+import { capitalizeFirstLetter } from '../utils/format';
 
 export default function Layout() {
   return (
     <Container>
       <Header>
-        <h1>
-          {OWNER} / {REPO}
-        </h1>
+        <StyledLink to='/'>
+          {capitalizeFirstLetter(OWNER)} / {capitalizeFirstLetter(REPO)}
+        </StyledLink>
       </Header>
       <Outlet />
     </Container>
   );
 }
 
-const Container = styled.main`
-  display: flex-col;
+const Container = styled.body`
+  padding: 0;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  /* display: flex-col; */
   padding: 10px;
+  min-width: 480px;
 `;
 
 const Header = styled.header`
@@ -26,4 +32,14 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   padding: 0 0 20px 0;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+  &:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+  }
 `;
