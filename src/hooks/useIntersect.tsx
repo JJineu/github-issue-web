@@ -9,9 +9,9 @@ const useIntersect = (onIntersect: IntersectHandler, options?: IntersectionObser
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          observer.unobserve(entry.target);
+          // observer.unobserve(entry.target);
           onIntersect(entry, observer); // callback
-          observer.observe(entry.target);
+          // observer.observe(entry.target);
         }
       });
     },
