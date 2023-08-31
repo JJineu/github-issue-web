@@ -7,7 +7,6 @@ export const API = {
 
 export const AD = {
   URL: 'https://www.wanted.co.kr/ ',
-  ALT: 'ad image',
   IMG: '/adImage.jpg',
 };
 

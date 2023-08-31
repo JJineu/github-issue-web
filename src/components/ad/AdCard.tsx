@@ -7,7 +7,7 @@ export default function AdCard() {
   return (
     <LinkContainer to={AD.URL}>
       <p>[AD]</p>
-      <img src={AD.IMG} alt={AD.ALT} />
+      <img src={AD.IMG} alt={`ad image of ${AD.URL}`} />
     </LinkContainer>
   );
 }
