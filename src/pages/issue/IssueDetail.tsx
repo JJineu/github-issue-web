@@ -20,17 +20,21 @@ export default function IssueDetail() {
 
   return (
     <>
-      {loading && <Loading />}
-      {error && <Error />}
-      <div>
-        <HeaderContainer>
-          <ProfileImage src={profileImage} alt='user profile image' />
-          <IssueCard issue={{ issueId, title, author, createdAt, commentsLength } as IIssue} />
-        </HeaderContainer>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <Error />
+      ) : (
         <div>
-          <MarkdownRenderer markdown={String(body)} />
+          <HeaderContainer>
+            <ProfileImage src={profileImage} alt='user profile image' />
+            <IssueCard issue={{ issueId, title, author, createdAt, commentsLength } as IIssue} />
+          </HeaderContainer>
+          <div>
+            <MarkdownRenderer markdown={String(body)} />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

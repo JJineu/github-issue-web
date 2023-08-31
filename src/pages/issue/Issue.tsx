@@ -12,16 +12,22 @@ export default function Issue() {
 
   return (
     <>
-      {loading && <Loading />}
-      {error && <Error />}
-      {issues &&
-        issues.map((issue: IIssue, index: number) => (
-          <React.Fragment key={issue.issueId}>
-            <IssueCard issue={issue} />
-            {(index + 1) % 4 === 0 && <AdCard />}
-          </React.Fragment>
-        ))}
-      <InfinityIssues />
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <Error />
+      ) : (
+        <>
+          {issues &&
+            issues.map((issue: IIssue, index: number) => (
+              <React.Fragment key={issue.issueId}>
+                <IssueCard issue={issue} />
+                {(index + 1) % 4 === 0 && <AdCard />}
+              </React.Fragment>
+            ))}
+          <InfinityIssues />
+        </>
+      )}
     </>
   );
 }
