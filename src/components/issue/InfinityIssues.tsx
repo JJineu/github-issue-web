@@ -2,25 +2,33 @@ import React from 'react';
 import { styled } from 'styled-components';
 import Loading from '../common/Loading';
 import useIntersect from '../../hooks/useIntersect';
-import { getIssues } from '../../api/request';
 import { useIssuesContext } from '../../context/IssuesProvider';
+import Error from '../common/Error';
 
 const InfinityIssues = () => {
-  const { addIssues, page } = useIssuesContext();
+  const { addIssues, page, callback, loading, error } = useIssuesContext();
 
   const getNextPage = async () => {
-    const nextPage = page.current + 1;
-    const nextIssues = await getIssues(nextPage);
-    page.current = nextPage;
-    addIssues(nextIssues);
+    if (!loading && !error) {
+      page.current = page.current + 1;
+      const nextIssues = await callback();
+      addIssues(nextIssues);
+    }
   };
 
   const targetRef = useIntersect(getNextPage);
-
   return (
-    <TargetDiv ref={targetRef}>
-      <Loading />
-    </TargetDiv>
+    <>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <Error />
+      ) : (
+        <TargetDiv ref={targetRef}>
+          <Loading />
+        </TargetDiv>
+      )}
+    </>
   );
 };
 

@@ -1,11 +1,4 @@
-import React, {
-  MutableRefObject,
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { MutableRefObject, createContext, useContext, useRef, useState } from 'react';
 import { IIssue } from '../types/issue';
 import useFetch from '../hooks/useFetch';
 import { getIssues } from '../api/request';
@@ -16,11 +9,16 @@ interface IssuesContextType {
   error: Error | null | undefined;
   addIssues: (newIssues: IIssue[]) => void;
   page: MutableRefObject<number>;
+  callback: () => Promise<IIssue[]>;
 }
 const IssuesContext = createContext<IssuesContextType | undefined>(undefined);
 
 export const IssuesProvider = ({ children }: { children: React.ReactNode }) => {
-  const { data, loading, error } = useFetch<IIssue[], Error>(getIssues);
+  const callback = async () => {
+    return await getIssues(page.current);
+  };
+
+  const { data, loading, error } = useFetch<IIssue[], Error>(callback);
   const [issues, setIssues] = useState<IIssue[]>(data || []);
   const page = useRef(0);
 
@@ -29,7 +27,7 @@ export const IssuesProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <IssuesContext.Provider value={{ issues, loading, error, addIssues, page }}>
+    <IssuesContext.Provider value={{ issues, loading, error, addIssues, page, callback }}>
       {children}
     </IssuesContext.Provider>
   );
