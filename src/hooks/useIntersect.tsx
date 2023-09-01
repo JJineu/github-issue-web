@@ -9,7 +9,7 @@ const useIntersect = (onIntersect: IntersectHandler, options?: IntersectionObser
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          onIntersect(entry, observer); // callback
+          onIntersect(entry, observer);
         }
       });
     },
@@ -18,11 +18,9 @@ const useIntersect = (onIntersect: IntersectHandler, options?: IntersectionObser
 
   useEffect(() => {
     if (!ref.current) return;
-    // ref 렌더링 이후 oberve
     const observer = new IntersectionObserver(checkIntersect, options);
     observer.observe(ref.current);
 
-    // 언마운트시 클린업
     return () => observer.disconnect();
   }, [ref, options, checkIntersect]);
 
