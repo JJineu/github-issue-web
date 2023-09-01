@@ -2,11 +2,11 @@ import { API } from '../constants';
 import { IIssue, IIssueDetail } from '../types/issue';
 import { instance } from './axiosinstance';
 
+const ISSUE_URL = `/repos/${API.OWNER}/${API.REPO}/issues` as const;
+
 export const getIssues = async (page = 1): Promise<IIssue[]> => {
   try {
-    const response = await instance.get(
-      `/repos/${API.OWNER}/${API.REPO}/issues${API.CONDITION}&page=${page}`,
-    );
+    const response = await instance.get(`${ISSUE_URL}${API.CONDITION}&page=${page}`);
     const processedIssues: IIssue[] = response.data.map((issue: any) => ({
       issueId: issue.number,
       title: issue.title,
@@ -23,7 +23,7 @@ export const getIssues = async (page = 1): Promise<IIssue[]> => {
 
 export const getIssueDetail = async (id: number): Promise<IIssueDetail> => {
   try {
-    const response = await instance.get(`/repos/${API.OWNER}/${API.REPO}/issues/${id}`);
+    const response = await instance.get(`${ISSUE_URL}/${id}`);
     const processedIssue: IIssueDetail = {
       issueId: response.data.number,
       title: response.data.title,
