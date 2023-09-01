@@ -51,7 +51,7 @@ const useFetch = <D, E>(fetchCallback?: () => Promise<D>) => {
 
   const [state, dispatch] = useReducer(useFetchReducer<D, E>, initialState);
 
-  const fetchData = async (fetchCallback?: () => Promise<D>) => {
+  const fetch = async (fetchCallback?: () => Promise<D>) => {
     if (!fetchCallback) return;
 
     dispatch({ type: STATUS.LOADING });
@@ -65,12 +65,12 @@ const useFetch = <D, E>(fetchCallback?: () => Promise<D>) => {
   };
 
   useEffect(() => {
-    fetchData(fetchCallback);
+    fetch(fetchCallback);
   }, []);
 
   return {
     ...state,
-    refetch: fetchData,
+    fetch,
   };
 };
 

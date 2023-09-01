@@ -9,7 +9,7 @@ import useFetch from '../../hooks/useFetch';
 import Loading from '../../components/common/Loading';
 import Error from '../../components/common/Error';
 
-const IssueDetail = () => {
+export default function IssueDetail() {
   const { id } = useParams();
   const {
     data: issue,
@@ -30,16 +30,12 @@ const IssueDetail = () => {
             <ProfileImage src={profileImage} alt='user profile image' />
             <IssueCard issue={{ issueId, title, author, createdAt, commentsLength } as IIssue} />
           </HeaderContainer>
-          <div>
-            <MarkdownRenderer markdown={String(body)} />
-          </div>
+          <MarkdownRenderer markdown={String(body)} />
         </div>
       )}
     </>
   );
-};
-
-export default IssueDetail;
+}
 
 const HeaderContainer = styled.div`
   display: grid;

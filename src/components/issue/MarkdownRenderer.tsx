@@ -19,10 +19,10 @@ export default function MarkdownRenderer({ markdown }: IMarkdownProps) {
             // 강조 (``)
             <code
               style={{
-                background: 'linear-gradient( to right,#fcffdf 15%, #faffb8 85%, #fcffdf)',
+                background: '#f7ff9b',
                 fontWeight: 'bold',
                 padding: '2px',
-                borderRadius: '3px',
+                borderRadius: '5px',
               }}
               {...props}
             >

@@ -1,33 +1,25 @@
-import React, { MutableRefObject, createContext, useContext, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 import { IIssue } from '../types/issue';
-import useFetch from '../hooks/useFetch';
-import { getIssues } from '../api/request';
 
 interface IssuesContextType {
   issues: IIssue[];
-  loading: boolean;
-  error: Error | null | undefined;
   addIssues: (newIssues: IIssue[]) => void;
-  page: MutableRefObject<number>;
-  callback: () => Promise<IIssue[]>;
+  page: number;
+  setPage: Dispatch<React.SetStateAction<number>>;
+  setIssues: Dispatch<SetStateAction<IIssue[]>>;
 }
 const IssuesContext = createContext<IssuesContextType | undefined>(undefined);
 
 export const IssuesProvider = ({ children }: { children: React.ReactNode }) => {
-  const callback = async () => {
-    return await getIssues(page.current);
-  };
-
-  const { data, loading, error } = useFetch<IIssue[], Error>(callback);
-  const [issues, setIssues] = useState<IIssue[]>(data || []);
-  const page = useRef(0);
+  const [issues, setIssues] = useState<IIssue[]>([]);
+  const [page, setPage] = useState(1);
 
   const addIssues = (newIssues: IIssue[]) => {
     setIssues([...issues, ...newIssues]);
   };
 
   return (
-    <IssuesContext.Provider value={{ issues, loading, error, addIssues, page, callback }}>
+    <IssuesContext.Provider value={{ issues, addIssues, setIssues, page, setPage }}>
       {children}
     </IssuesContext.Provider>
   );
