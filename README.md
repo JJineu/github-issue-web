@@ -3,7 +3,7 @@
 특정 리포지토리(facebook/react)의 이슈 목록을 확인하는 페이지입니다.
 
 
-🗓️ 진행 기간: 약 2일 (2023.08.29 ~ 2023.08.31)
+🗓️ 진행 기간: 약 3일(2023.08.29 ~ 2023.09.1)
 
 💡 개발 인원 : 1인 [@김현진](https://github.com/JJineu)
 
@@ -47,27 +47,40 @@ src
 ```
 
 ### 기술 스택 및 사용한 라이브러리
+- JavaScript / TypeScript / React
+- 상태 관리: Context API
+- HTTP Client: axios
+- 라우팅: react-router-dom
+- 스타일: styled-components, react-markdown
 
+```jsx
 - Create React App
   - "react": "^18.2.0"
   - "react-dom": "^18.2.0"
-- Typescript "^4.9.5"
+- axios: "^1.4.0",
 - react-router-dom "^6.15.0"
 - styled-components "^6.0.7"
+- react-markdown": "^8.0.7",
+- react-syntax-highlighter: "^15.5.0",
+- remark-gfm: "^3.0.1",
+
+- Typescript "^4.9.5"
+```
+
 
 <br>
 
 ## 📝 구현 내용
 ### 주요 기능
 
-- 지정한 조건에 맞는 데이터 요청 및 표시 (코멘트 수 많은 순, 열려있는 이슈 한정)
-- 이슈 목록 및 상세 화면 기능 구현
-- 에러 화면 구현
-- Markdown 형식의 본문의 HTML 변환
-- 무한 스크롤 및 데이터 요청 중 로딩 표시
-- 특정 이슈 개수마다 정해진 광고 이미지 및 링크 표시
-
-
+- Github API를 활용하여, 이슈 목록을 가져옵니다.
+  - 데이터 요청 중 로딩 표시
+  - 에러 화면 구현
+  - Markdown 형식의 본문의 HTML으로 변환합니다.
+- 이슈 목록을 정렬합니다.
+  - open 상태의 이슈 중 코멘트가 많은 순으로 출력합니다.
+  - 다섯 번째 셀마다 광고 이미지를 출력합니다.
+- 화면을 아래로 스크롤 할 시 이슈 목록을 추가합니다.(인피니티 스크롤)
 
 
 ## 1. 무한 스크롤
@@ -109,11 +122,3 @@ e.g.  FEAT: 로그인 유효성 검증 기능 구현
 | feature/~ | 세부 기능 개발을 위한 브랜치 |
 | refactor | 리팩토링을 위한 브랜치 |
 
-
-<br>
-
-## 추가 정보
-
-### 배포
-
-- 해당 프로젝트는 vercel 을 통해 배포되었습니다. [배포링크](https://github-issue-web.vercel.app/)
