@@ -7,6 +7,13 @@ export const instance = axios.create({
     'Content-Type': 'application/json',
     Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28',
-    Authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
   },
+});
+
+instance.interceptors.request.use((config) => {
+  const token = process.env.REACT_APP_GITHUB_TOKEN;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
