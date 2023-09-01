@@ -11,7 +11,7 @@
 ※ 개발 과정은 Notion으로 정리했습니다.
 - [Notion](https://www.notion.so/week-02-study-review-forward-48973e89282343e0b5c935dc071353b7)
 
-※ 개인 과제를 바탕으로 팀 과제를 진행했습니다.
+※ 개인 과제를 바탕으로 팀 과제를 진행했습니다. (2023.08.30 ~ 2023.08.31)
 - [팀 Domain](https://2team-github-issue-page.netlify.app/)
 - [팀 과제 Git](https://github.com/wanted-internship-team/pre-onboarding-12th-2-2)
 - [팀 Notion](https://www.notion.so/somtha/2-05d97d2ea34f4c9e9828ebe5e0a051fa)
