@@ -9,7 +9,7 @@ import useFetch from '../../hooks/useFetch';
 import Loading from '../../components/common/Loading';
 import Error from '../../components/common/Error';
 
-export default function IssueDetail() {
+const IssueDetail = () => {
   const { id } = useParams();
   const {
     data: issue,
@@ -37,7 +37,9 @@ export default function IssueDetail() {
       )}
     </>
   );
-}
+};
+
+export default IssueDetail;
 
 const HeaderContainer = styled.div`
   display: grid;

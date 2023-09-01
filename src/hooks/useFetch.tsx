@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { STATE } from '../constants';
+import { STATUS } from '../constants';
 
 interface BaseState<D, E> {
   error?: E | null;
@@ -11,7 +11,7 @@ interface UseFetchState<D, E> extends BaseState<D, E> {
 }
 
 interface UseFetchAction<D, E> extends BaseState<D, E> {
-  type: typeof STATE.LOADING | typeof STATE.ERROR | typeof STATE.SUCCESS;
+  type: typeof STATUS.LOADING | typeof STATUS.ERROR | typeof STATUS.SUCCESS;
 }
 
 const useFetchReducer = <D, E>(
@@ -19,19 +19,19 @@ const useFetchReducer = <D, E>(
   action: UseFetchAction<D, E>,
 ): UseFetchState<D, E> => {
   switch (action.type) {
-    case STATE.LOADING:
+    case STATUS.LOADING:
       return {
         loading: true,
         error: null,
         data: null,
       };
-    case STATE.ERROR:
+    case STATUS.ERROR:
       return {
         loading: false,
         error: action.error,
         data: null,
       };
-    case STATE.SUCCESS:
+    case STATUS.SUCCESS:
       return {
         loading: false,
         error: null,
@@ -42,26 +42,30 @@ const useFetchReducer = <D, E>(
   }
 };
 
-const useFetch = <D, E>(fetchCallback: () => Promise<D>) => {
+const useFetch = <D, E>(fetchCallback?: () => Promise<D>) => {
   const initialState: UseFetchState<D, E> = {
     loading: false,
     error: null,
     data: null,
   };
+
   const [state, dispatch] = useReducer(useFetchReducer<D, E>, initialState);
 
-  const fetchData = async () => {
-    dispatch({ type: STATE.LOADING });
+  const fetchData = async (fetchCallback?: () => Promise<D>) => {
+    if (!fetchCallback) return;
+
+    dispatch({ type: STATUS.LOADING });
+
     try {
       const data = await fetchCallback();
-      dispatch({ type: STATE.SUCCESS, data });
+      dispatch({ type: STATUS.SUCCESS, data });
     } catch (error) {
-      dispatch({ type: STATE.ERROR, error: error as E });
+      dispatch({ type: STATUS.ERROR, error: error as E });
     }
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(fetchCallback);
   }, []);
 
   return {
