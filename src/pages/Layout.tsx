@@ -3,12 +3,14 @@ import { Link, Outlet } from 'react-router-dom';
 import { API } from '../constants';
 import styled from 'styled-components';
 import { capitalizeFirstLetter } from '../utils/format';
+import { AiFillGithub } from 'react-icons/ai';
 
 export default function Layout() {
   return (
     <Container>
       <Header>
         <StyledLink to='/'>
+          <AiFillGithub className='ic_home' />
           {capitalizeFirstLetter(API.OWNER)} / {capitalizeFirstLetter(API.REPO)}
         </StyledLink>
       </Header>
@@ -28,12 +30,18 @@ const Container = styled.div`
 
 const Header = styled.header`
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  padding: 0 0 20px 0;
+  padding: 20px;
+
+  .ic_home {
+    padding: 0 5px 0 0;
+  }
 `;
 
 const StyledLink = styled(Link)`
+  display: flex;
   text-decoration: none;
   color: black;
   font-size: 30px;

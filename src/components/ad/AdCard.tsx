@@ -35,4 +35,8 @@ const LinkContainer = styled(Link)`
     padding: 0;
     margin: 0;
   }
+  &:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+  }
 `;
