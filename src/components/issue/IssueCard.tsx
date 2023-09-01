@@ -3,6 +3,8 @@ import { IIssue } from '../../types/issue';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { formatDate } from '../../utils/format';
+import { BiCommentError } from 'react-icons/bi';
+import { RiRadioButtonLine } from 'react-icons/ri';
 
 export default function IssueCard({ issue }: { issue: IIssue }) {
   const { issueId, title, author, createdAt, commentsLength } = issue;
@@ -16,11 +18,13 @@ export default function IssueCard({ issue }: { issue: IIssue }) {
           </p>
         </Title>
         <p>
+          <RiRadioButtonLine className='ic_status' />
           작성자: {author}, 작성일: {formatDate(createdAt)}
         </p>
       </TitleContainer>
       <CommentsContainer>
-        <p>코멘트: {commentsLength}</p>
+        <BiCommentError className='ic_comments' />
+        <p>{commentsLength}</p>
       </CommentsContainer>
     </LinkContainer>
   );
@@ -35,10 +39,26 @@ const LinkContainer = styled(Link)`
   border-bottom: 1px solid #ccc;
   text-decoration: none;
   color: black;
+  &:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+  }
 `;
 
 const TitleContainer = styled.div`
   width: 100%;
+  > p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: small;
+    color: #787777;
+  }
+  .ic_status {
+    width: 18px;
+    height: 18px;
+    color: green;
+  }
 `;
 
 const Title = styled.div`
@@ -47,5 +67,12 @@ const Title = styled.div`
 `;
 
 const CommentsContainer = styled.div`
-  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  .ic_comments {
+    width: 100%;
+    color: #6f6cd3;
+  }
 `;
