@@ -82,6 +82,9 @@ src
   - 다섯 번째 셀마다 광고 이미지를 출력합니다.
 - 화면을 아래로 스크롤 할 시 이슈 목록을 추가합니다.(인피니티 스크롤)
 
+<p align='center'>
+  <img src='https://github.com/JJineu/github-issue-web/assets/96639305/af63cabc-2a3d-4948-8e4a-e83404e889ee' />
+</p>
 
 ## Point 1. infinite-scroll
 
