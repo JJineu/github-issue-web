@@ -2,12 +2,19 @@
 
 특정 리포지토리(facebook/react)의 이슈 목록을 확인하는 페이지입니다.
 
-
 🗓️ 진행 기간: 약 3일(2023.08.29 ~ 2023.09.1)
 
 💡 개발 인원 : 1인 [@김현진](https://github.com/JJineu)
 
-※ 본 과제는 [원티드 프리온보딩 인턴십 8월](https://www.wanted.co.kr/events/pre_ob_fe_12)를 바탕으로 진행되었습니다. 
+<br>
+
+※ 개발 과정은 Notion으로 정리했습니다.
+- [Notion](https://www.notion.so/week-02-study-review-forward-48973e89282343e0b5c935dc071353b7)
+
+※ 개인 과제를 바탕으로 팀 과제를 진행했습니다.
+- [팀 과제 Git](https://github.com/wanted-internship-team/pre-onboarding-12th-2-2)
+- [팀 Notion](https://www.notion.so/somtha/2-05d97d2ea34f4c9e9828ebe5e0a051fa)
+
 
 <br>
 
